@@ -5,7 +5,7 @@ export default function SingleArticle(props){
     const [article, setArticle] = useState({});
 
     function getArticle(props){
-        axios.get("/api/"+props.ID).then(response => {
+        axios.get("/api/article/"+props.ID).then(response => {
                 setArticle(response.data);        
         })
     }

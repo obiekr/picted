@@ -11,7 +11,11 @@ class RegisterAPI(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            print("Register Error:", serializer.errors)
+            return Response(serializer.errors)
+        # print(serializer.is_valid(raise_exception=True))
+
         user = serializer.save()
         return Response({"user": UserSerializer(user, context=self.get_serializer_context()).data,
                          # once you register, you dont have to login again
@@ -25,7 +29,10 @@ class LoginAPI(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            print("Login Error:", serializer.errors)
+            return Response(serializer.errors)
+
         user = serializer.validated_data
         return Response({"user": UserSerializer(user, context=self.get_serializer_context()).data,
                          # once you register, you dont have to login again

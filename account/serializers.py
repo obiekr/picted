@@ -2,6 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
+# user email has to be unique
+User._meta.get_field('email')._unique = True
 # User Serializer
 
 

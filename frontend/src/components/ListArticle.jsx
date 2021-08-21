@@ -7,7 +7,7 @@ export default function ListArticle(){
     const [article, setArticle] = useState({});
 
     function getArticle(){
-        axios.get("/api").then(response => {
+        axios.get("/api/article").then(response => {
                 setArticle(response.data);        
         })
     }
@@ -20,7 +20,7 @@ export default function ListArticle(){
                 return(
                     <Card key={c.id} style={{margin: "1em"}}>
                         <Card.Img variant="top" src="holder.js/100px160" />
-                        <Link to={"./"+c.id}>
+                        <Link to={"./article/"+c.id}>
                             <Card.Body>
                                 <Card.Title>{c.title}</Card.Title>
                                 <Card.Text>{c.content}</Card.Text>

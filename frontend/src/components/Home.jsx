@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
-export default function Home(){
+export default function Home(props){
+    console.log(props)
+    
     return(
         <div className="container">
             <a href="/login">
