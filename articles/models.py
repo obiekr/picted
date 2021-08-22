@@ -10,7 +10,7 @@ class Article(models.Model):
     thumbnail = models.ImageField(
         max_length=255, upload_to="", null=True, blank=True, default="")
     author = models.ForeignKey(
-        User, related_name="article", on_delete=models.CASCADE, null=True)
+        User, related_name="article", on_delete=models.CASCADE, null=True, to_field="username")
     created_on = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):

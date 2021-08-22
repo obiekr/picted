@@ -7,6 +7,7 @@ import SingleArticle from './components/SingleArticle';
 import Home from './components/Home';
 import Login from "./components/Login"
 import Register from './components/Register';
+import Header from './components/Header';
 
 function GetSingleArticle(){
     const { articleID } = useParams()
@@ -19,6 +20,7 @@ function App() {
 
     return (
             <Router>
+                <Header />
                 <Route exact path="/"><Home token={universalToken}/></Route>
                 <Route exact path="/article"><ListArticle token={universalToken}/></Route>
                 <Route exact path="/article/:articleID"><GetSingleArticle token={universalToken}/></Route>
