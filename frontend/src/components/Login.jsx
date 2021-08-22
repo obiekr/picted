@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 // https://www.youtube.com/watch?v=EmAc4wQikwY
-export default function Login({setUniversalToken}){
+export default function Login(){
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -39,8 +39,6 @@ export default function Login({setUniversalToken}){
         .then(res=>{
             console.log(res)
             if(res.data.token){
-                config.headers["Authorization"] = `Token ${res.data.token}`;
-                setUniversalToken(res.data.token);
                 localStorage.setItem("token", res.data.token);
             }
             if(res.data.username){

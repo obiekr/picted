@@ -39,8 +39,8 @@ export default function Register(props){
             .then(res=>{
                 if(res.data.token){
                     setToken(res.data.token)
-                    config.headers["Authorization"] = `Token ${token}`
-                    props.tokenize(token)
+                    localStorage.setItem("token", res.data.token);
+                    
                 } 
                 // if username error
                 if(res.data.username){ 
