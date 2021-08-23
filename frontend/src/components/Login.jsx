@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FormControl, Form, Button, Collapse } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 // https://www.youtube.com/watch?v=EmAc4wQikwY
 export default function Login(){
@@ -40,6 +41,7 @@ export default function Login(){
             console.log(res)
             if(res.data.token){
                 localStorage.setItem("token", res.data.token);
+                setIsLoggedIn(true);
             }
             if(res.data.username){
                 setUserIsError(true)
@@ -59,7 +61,11 @@ export default function Login(){
         })
         
     }
+    if(isLoggedIn){
+        return <Redirect to="/" />
+    }
     return(
+        
         <div className="container">
             <Collapse in={isInvalidCredentials}>
                 <div className="">

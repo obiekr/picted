@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Navbar, Nav, Container, Button } from 'react-bootstrap'
 import axios from 'axios';
 
@@ -7,7 +7,8 @@ import axios from 'axios';
 
 export default function Header(){
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    
+    const [userData, setUserData] = useState({})
+
     const token = localStorage.getItem("token");
     const config = {
         headers: {
@@ -15,20 +16,36 @@ export default function Header(){
             "Authorization": `Token ${token}`
         }
     };
-    
-    axios.get("/account/api/auth/user", config)
-    .then(res=>{
-        setIsLoggedIn(true);
-        return res.data
+
+    useEffect(()=> {
+        getUser();
+    }, [])
+
+    function getUser(){
+        axios.get("/account/api/auth/user", config)
+        .then(res=>{
+            setIsLoggedIn(true);
+            setUserData(res.data)
         })
+    }
+
     
+    function logOutHandler(){
+        axios.get("/account/api/auth/user", config)
+        .then(res=>{
+            setIsLoggedIn(false);
+            userData.current = {};
+            localStorage.removeItem("token");
+        })
+    }
     
-    function renderRightButton(){
+    function renderRightButton(e){
         if(isLoggedIn){
+            console.log(userData)
             return(
                 <Nav className="me-auto">
-                    <Nav.Link href="/"></Nav.Link>
-                    <Button className="nav-link">Log Out</Button>
+                    <Nav.Link href="/">{userData.username}</Nav.Link>
+                    <Button onClick={(e) => logOutHandler(e)} className="nav-link">Log Out</Button>
                 </Nav>
             )
         }else{
