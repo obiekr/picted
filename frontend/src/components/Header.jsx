@@ -63,7 +63,7 @@ export default function Header(){
         <div className="header">
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="/">Navbar</Navbar.Brand>
+                    <Navbar.Brand href="/">Picted</Navbar.Brand>
                         <Nav className="me-auto">
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/article">Articles</Nav.Link>

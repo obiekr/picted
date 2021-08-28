@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter as Router, Route, useParams } from 'react-router-dom';
-import useToken from './useToken';
+// import "./sass/App.scss"
+
 
 import ListArticle from './components/ListArticle';
 import SingleArticle from './components/SingleArticle';
@@ -8,7 +9,7 @@ import Home from './components/Home';
 import Login from "./components/Login"
 import Register from './components/Register';
 import Header from './components/Header';
-
+// add premium membership functionality
 function GetSingleArticle(){
     const { articleID } = useParams()
     return <SingleArticle ID={articleID} />

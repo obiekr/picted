@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { Card, CardGroup, Container, Button, NavItem, PageItem } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
+import "./ListArticle.css"
 
 export default function ListArticle(){
     const [article, setArticle] = useState({});
@@ -17,19 +18,23 @@ export default function ListArticle(){
     function displayArticle(item){
         if (item.length > 0){
             let res = article.map(c => {
+                if(c.content.length > 180){
+                    var content = c.content.substring(0, 180)+"..." 
+                }else{
+                    var content = c.content
+                }
+                console.log(c)
                 return(
-                    <Card key={c.id} style={{margin: "1em"}}>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Link to={"./article/"+c.id}>
-                            <Card.Body>
-                                <Card.Title>{c.title}</Card.Title>
-                                <Card.Text>{c.content}</Card.Text>
-                            </Card.Body>
-                        </Link>
-                        <Card.Footer>
-                        <small className="text-muted">{c.author}</small>
-                        </Card.Footer>
-                    </Card>                 
+                    <Link to={"/article/" + c.id}>
+                        <div class="tile"> 
+                            <img src={'https://source.unsplash.com/random?sig='+ c.id} alt="unsplah image"/>
+                            <div class="text">
+                                <h1>{c.title}.</h1>
+                                <h2 class="animate-text">{c.author}</h2>
+                                <p class="animate-text">{content}</p>
+                            </div>
+                        </div> 
+                    </Link>              
                 )
             })
             return res
@@ -42,11 +47,11 @@ export default function ListArticle(){
         getArticle()
     }, [])
     return(
-        
-        <Container className="center">
-            <CardGroup>
+        <div class="wrap">
             {displayArticle(article)}
-            </CardGroup>
-        </Container>
+        </div>
+  
+
+
     )
 }
