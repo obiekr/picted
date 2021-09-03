@@ -9,6 +9,7 @@ import Home from './components/Home';
 import Login from "./components/Login"
 import Register from './components/Register';
 import Header from './components/Header';
+import Footer from './components/Footer';
 // add premium membership functionality
 function GetSingleArticle(){
     const { articleID } = useParams()
@@ -27,6 +28,7 @@ function App() {
                 <Route exact path="/article/:articleID"><GetSingleArticle token={universalToken}/></Route>
                 <Route exact path="/login"><Login setUniversalToken={setUniversalToken}/></Route>
                 <Route exact path="/register"><Register setUniversalToken={setUniversalToken}/></Route>
+                <Footer />
             </Router>
         );
     

@@ -38,19 +38,20 @@ export default function Header(){
             localStorage.removeItem("token");
         })
     }
+
     
     function renderRightButton(e){
         if(isLoggedIn){
             console.log(userData)
             return(
-                <Nav className="me-auto">
+                <Nav className="ms-auto">
                     <Nav.Link href="/">{userData.username}</Nav.Link>
                     <Button onClick={(e) => logOutHandler(e)} className="nav-link">Log Out</Button>
                 </Nav>
             )
         }else{
             return(
-                <Nav className="me-auto">
+                <Nav className="ms-auto">
                     <Nav.Link href="/login">Log In</Nav.Link>
                     <Nav.Link href="/register">Register</Nav.Link>
                 </Nav>
