@@ -34,18 +34,33 @@ export default function ListArticle(){
         if (article.length > 0){
             let res = article.map((c, index) => {
                 var content = "";
-                console.log(thumbImg[index].urls.full)
+                console.log(thumbImg[index].urls)
                 if(c.content.length > 180){
                     content = c.content.substring(0, 180)+"..." 
                 }else{
                     content = c.content
+                }
+                if(c.thumbnail){
+                    return( 
+                        <Link to={"/article/" + c.id}>
+                        <div class="tile"> 
+                            {/* <img src={'https://source.unsplash.com/random?sig='+ c.id} alt="unsplah image"/> */}
+                            <img src={c.thumbnail} alt="unsplah"/>
+                            <div class="text">
+                                <h1>{c.title}.</h1>
+                                <h2 class="animate-text">{c.author}</h2>
+                                <p class="animate-text">{content}</p>
+                            </div>
+                        </div> 
+                    </Link>       
+                    )
                 }
                 return(
                     
                     <Link to={"/article/" + c.id}>
                         <div class="tile"> 
                             {/* <img src={'https://source.unsplash.com/random?sig='+ c.id} alt="unsplah image"/> */}
-                            <img src={thumbImg[index].urls.full} alt="unsplah"/>
+                            <img src={thumbImg[index].urls.small} alt="unsplah"/>
                             <div class="text">
                                 <h1>{c.title}.</h1>
                                 <h2 class="animate-text">{c.author}</h2>

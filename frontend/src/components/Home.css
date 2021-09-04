@@ -69,35 +69,7 @@ main {
   width: 100%;
   margin: 0;
 }
-/*...large...*/
-.card-lg__container {
-  padding: 0 16px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.card-lg__container .card__text-lg {
-  font-family: "Oswald", sans-serif;
-  font-size: 40px;
-  font-weight: 400;
-  letter-spacing: 1.4px;
-}
-.card-lg__container .card__text-md {
-  color: #fff;
-  font-family: sans-serif;
-  font-size: 10px;
-  font-weight: 100;
-  line-height: 1.5;
-  padding: 0 32px 0 0;
-  opacity: 0.5;
-}
-.card-lg__container .card__text-sm {
-  font-size: 14px;
-}
-.card-lg__container .card__text-sm::before {
-  width: 24px;
-  height: 2px;
-}
+
 /*...small...*/
 .card-sm__container {
   height: 350px;
